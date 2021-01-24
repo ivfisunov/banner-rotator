@@ -6,7 +6,7 @@ linters:
   enable-all: true
   disable:
     - exhaustive
-    - exhaustivestruct
+    # - exhaustivestruct
     - goerr113
     - gochecknoglobals
     - gochecknoinits
