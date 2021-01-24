@@ -15,7 +15,7 @@ linters:
     - gomnd
     - lll
     - nakedret
-    - nlreturn
+    # - nlreturn
     - testpackage
     - wsl
     - wrapcheck
