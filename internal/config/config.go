@@ -8,7 +8,7 @@ type Config struct {
 }
 
 type LoggerConf struct {
-	Level string
+	   Level string
 	Path  string
 }
 
