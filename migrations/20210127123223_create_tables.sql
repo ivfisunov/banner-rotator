@@ -2,18 +2,18 @@
 -- SQL in this section is executed when the migration is applied.
 CREATE TABLE IF NOT EXISTS slots (
   id SERIAL PRIMARY KEY,
-  desctiption text NOT NULL,
+  description text NOT NULL,
   banners integer[]
 );
 
 CREATE TABLE IF NOT EXISTS banners (
   id SERIAL PRIMARY KEY,
-  desctiption text NOT NULL
+  description text NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS groups (
   id SERIAL PRIMARY KEY,
-  desctiption text NOT NULL
+  description text NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS stats (
@@ -24,6 +24,16 @@ CREATE TABLE IF NOT EXISTS stats (
   display integer DEFAULT 0,
   click integer DEFAULT 0
 );
+
+INSERT INTO slots (description)
+VALUES ('header slot'), ('center slot'), ('footer slot');
+
+INSERT INTO banners (description)
+VALUES ('banner with car'), ('laptop banner'), ('funny banner'),
+       ('banner for adults'), ('banner for youth');
+
+INSERT INTO groups (description)
+VALUES ('aged'), ('youth'), ('men'), ('women');
 
 -- +goose Down
 -- SQL in this section is executed when the migration is rolled back.
