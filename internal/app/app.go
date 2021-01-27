@@ -3,8 +3,8 @@ package app
 import "github.com/sirupsen/logrus"
 
 type App struct {
-	Logger  *logrus.Logger
 	Storage Storage
+	Logger  *logrus.Logger
 }
 
 type Storage struct{}
