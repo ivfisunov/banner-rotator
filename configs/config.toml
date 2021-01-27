@@ -2,7 +2,7 @@
 env = "development"
 
 [storage]
-dsn = "user=test_user password=123456 dbname=banner sslmode=disable"
+dsn = "user=banner password=123456 dbname=banner sslmode=disable"
 
 [logger]
 level = "info"

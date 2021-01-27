@@ -1,14 +1,15 @@
 package app
 
-import "github.com/sirupsen/logrus"
+import (
+	"github.com/ivfisunov/banner-rotator/internal/storage"
+	"github.com/sirupsen/logrus"
+)
 
 type App struct {
-	Storage Storage
+	Storage storage.Storage
 	Logger  *logrus.Logger
 }
 
-type Storage struct{}
-
-func New(logger *logrus.Logger) *App {
-	return &App{Logger: logger, Storage: Storage{}}
+func New(logger *logrus.Logger, storage storage.Storage) *App {
+	return &App{Logger: logger, Storage: storage}
 }
