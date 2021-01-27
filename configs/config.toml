@@ -1,6 +1,9 @@
+
+env = "development"
+
 [storage]
 dsn = "user=test_user password=123456 dbname=banner sslmode=disable"
 
 [logger]
-level = "INFO"
+level = "info"
 path = "./logs/logfile.log"

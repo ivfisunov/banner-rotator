@@ -3,6 +3,7 @@ package config
 import "github.com/BurntSushi/toml"
 
 type Config struct {
+	Env     string
 	Logger  LoggerConf
 	Storage StorageConf
 }

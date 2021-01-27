@@ -1,10 +1,12 @@
 package main
 
 import (
-	"banner-rotator/internal/config"
 	"flag"
-	"fmt"
 	"log"
+
+	"github.com/ivfisunov/banner-rotator/internal/app"
+	"github.com/ivfisunov/banner-rotator/internal/config"
+	"github.com/ivfisunov/banner-rotator/internal/logger"
 )
 
 var configFile string
@@ -21,5 +23,12 @@ func main() {
 		log.Fatal(err)
 	}
 
-	fmt.Printf("%+v", config)
+	logger, err := logger.New(config.Env, config.Logger.Path, config.Logger.Level)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	app := app.New(logger)
+
+	app.Logger.Info("App started")
 }
