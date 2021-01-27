@@ -7,3 +7,7 @@ dsn = "user=banner password=123456 dbname=banner sslmode=disable"
 [logger]
 level = "info"
 path = "./logs/logfile.log"
+
+[http]
+host="localhost"
+port="4500"

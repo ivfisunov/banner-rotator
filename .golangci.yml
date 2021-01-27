@@ -6,6 +6,7 @@ linters:
   enable-all: true
   disable:
     - exhaustive
+    - exhaustivestruct
     - wrapcheck
     - gci
     - forbidigo

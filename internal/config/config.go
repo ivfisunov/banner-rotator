@@ -6,6 +6,7 @@ type Config struct {
 	Env     string
 	Logger  LoggerConf
 	Storage StorageConf
+	HTTP    HTTPConf
 }
 
 type LoggerConf struct {
@@ -15,6 +16,11 @@ type LoggerConf struct {
 
 type StorageConf struct {
 	Dsn string
+}
+
+type HTTPConf struct {
+	Host string
+	Port string
 }
 
 func NewConfig(path string) (*Config, error) {

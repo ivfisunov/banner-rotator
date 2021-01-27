@@ -1,12 +1,19 @@
 package main
 
 import (
+	"context"
+	"errors"
 	"flag"
 	"log"
+	"net/http"
+	"os"
+	"os/signal"
+	"time"
 
 	"github.com/ivfisunov/banner-rotator/internal/app"
 	"github.com/ivfisunov/banner-rotator/internal/config"
 	"github.com/ivfisunov/banner-rotator/internal/logger"
+	"github.com/ivfisunov/banner-rotator/internal/server"
 	"github.com/ivfisunov/banner-rotator/internal/storage"
 	_ "github.com/lib/pq"
 )
@@ -37,14 +44,28 @@ func main() {
 
 	app := app.New(logger, stor)
 
-	app.Logger.Info("App started")
-	err = app.Storage.Connect()
-	if err != nil {
-		log.Fatal(err)
-	}
-	app.Logger.Info("Connected to Postgres")
-	err = app.Storage.Close()
-	if err != nil {
-		log.Fatal(err)
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+	srv := server.NewServer(app, config.HTTP.Host, config.HTTP.Port)
+
+	go func() {
+		signals := make(chan os.Signal, 1)
+		signal.Notify(signals)
+
+		<-signals
+		logger.Info("Server is stopping...")
+		signal.Stop(signals)
+
+		ctx, cancel := context.WithTimeout(context.Background(), time.Second*3)
+		defer cancel()
+
+		if err := srv.Stop(ctx); err != nil {
+			logger.Error("failed to stop http server: " + err.Error())
+		}
+	}()
+
+	logger.Info("Banner App started")
+	if err := srv.Start(ctx); err != nil && !errors.Is(err, http.ErrServerClosed) {
+		logger.Error("failed to start http server: " + err.Error())
 	}
 }
