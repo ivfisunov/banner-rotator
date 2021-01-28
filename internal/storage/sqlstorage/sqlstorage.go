@@ -1,6 +1,9 @@
 package sqlstorage
 
-import "github.com/jmoiron/sqlx"
+import (
+	"github.com/ivfisunov/banner-rotator/internal/storage/stortypes"
+	"github.com/jmoiron/sqlx"
+)
 
 type Storage struct {
 	dsn string
@@ -34,14 +37,18 @@ func (s *Storage) Close() error {
 	return nil
 }
 
-func (s *Storage) AddBanner(idBanner, idSlot int) error {
+func (s *Storage) AddBanner(bannerID, slotID int) error {
 	return nil
 }
 
-func (s *Storage) DeleteBanner(idBanner, idSlot int) error {
+func (s *Storage) DeleteBanner(bannerID, slotID int) error {
 	return nil
 }
 
-func (s *Storage) AddClick(idBanner, idSlot, idGroup int) error {
+func (s *Storage) AddClick(bannerID, slotID, groupID int) error {
 	return nil
+}
+
+func (s *Storage) DisplayBanner(slotID, groupID int) (stortypes.Banner, error) {
+	return stortypes.Banner{}, nil
 }
