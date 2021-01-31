@@ -18,4 +18,4 @@ jobs:
         go-version: '1.15.x'
     - name: Checkout code
       uses: actions/checkout@v2
-    - run: go version
+    - run: make test

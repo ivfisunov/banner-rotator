@@ -1,3 +1,9 @@
+lint:
+	golangci-lint run ./...
+
+test:
+	go test ./...
+
 build:
 	go build  -v -o ./bin/rotator ./cmd/rotator
 
