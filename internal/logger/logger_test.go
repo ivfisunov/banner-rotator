@@ -8,7 +8,8 @@ import (
 
 func TestNew(t *testing.T) {
 	t.Run("successful open log file", func(t *testing.T) {
-		_, err := New("development", "../../logs/logfile.log", "info")
+
+		_, err := New("development", t.TempDir() + "/logfile.log", "info")
 		require.NoError(t, err)
 	})
 
@@ -17,7 +18,7 @@ func TestNew(t *testing.T) {
 		require.Error(t, err)
 	})
 
-	t.Run("invalid log lovel", func(t *testing.T) {
+	t.Run("invalid log level", func(t *testing.T) {
 		_, err := New("development", "../../logs/logfile.log", "bad_level")
 		require.Error(t, err)
 	})
