@@ -1,5 +1,7 @@
 package stortypes
 
+import "github.com/ivfisunov/banner-rotator/internal/ucb"
+
 // type Slot struct {
 // 	ID          int
 // 	Description string
@@ -33,10 +35,9 @@ type AddClickBody struct {
 }
 
 type Storage interface {
-	Connect() error
 	Close() error
 	AddBanner(bannerID, slotID int) error
 	DeleteBanner(bannerID, slotID int) error
 	AddClick(bunnerID, slotID, groupID int) error
-	DisplayBanner(slotID, groupID int) (Banner, error)
+	DisplayBanner(slotID, groupID int) (ucb.BannerID, error)
 }

@@ -81,7 +81,7 @@ func (s *Server) addBanner(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// err = s.Storage.AddBanner(data.BannerID, data.slotID)
+	err = s.Storage.AddBanner(data.BannerID, data.SlotID)
 	if err != nil {
 		s.Logger.Error("error inserting banner to slot: " + err.Error())
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -105,7 +105,7 @@ func (s *Server) deleteBanner(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// err = s.Storage.DeleteBanner(data.BannerID, data.slotID)
+	err = s.Storage.DeleteBanner(data.BannerID, data.SlotID)
 	if err != nil {
 		s.Logger.Error("error deleting banner from slot: " + err.Error())
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -129,7 +129,7 @@ func (s *Server) addClick(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// err = s.Storage.AddClick(data.BannerID, data.SlotID. data.GroupID)
+	err = s.Storage.AddClick(data.BannerID, data.SlotID, data.GroupID)
 	if err != nil {
 		s.Logger.Error("click addition error: " + err.Error())
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -153,7 +153,7 @@ func (s *Server) dispalyBanner(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// bannerToDisplay, err =: s.Storage.DisplayBanner(data.SlotID. data.GroupID)
+	bannerToDisplay, err := s.Storage.DisplayBanner(data.SlotID, data.GroupID)
 	if err != nil {
 		s.Logger.Error("getting banner error: " + err.Error())
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -161,7 +161,7 @@ func (s *Server) dispalyBanner(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = json.NewEncoder(w).Encode(map[string]string{"id": "", "description": ""})
+	err = json.NewEncoder(w).Encode(map[string]string{"id": fmt.Sprint(bannerToDisplay)})
 	if err != nil {
 		s.Logger.Error("error sending response")
 	}

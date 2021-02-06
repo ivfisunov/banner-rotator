@@ -3,7 +3,8 @@
 CREATE TABLE IF NOT EXISTS slots (
   id SERIAL PRIMARY KEY,
   description text NOT NULL,
-  banners integer[]
+  banners integer[],
+  total_displays integer DEFAULT 1
 );
 
 CREATE TABLE IF NOT EXISTS banners (
@@ -21,7 +22,7 @@ CREATE TABLE IF NOT EXISTS stats (
   slot_id integer REFERENCES slots (id) NOT NULL,
   banner_id integer REFERENCES banners (id) NOT NULL,
   group_id integer REFERENCES groups (id) NOT NULL,
-  display integer DEFAULT 0,
+  display integer DEFAULT 1,
   click integer DEFAULT 0
 );
 
