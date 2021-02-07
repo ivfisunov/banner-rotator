@@ -8,7 +8,6 @@ import (
 
 func TestNew(t *testing.T) {
 	t.Run("successful open log file", func(t *testing.T) {
-
 		_, err := New("development", t.TempDir() + "/logfile.log", "info")
 		require.NoError(t, err)
 	})

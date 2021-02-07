@@ -2,12 +2,12 @@
 env = "development"
 
 [storage]
-dsn = "user=banner password=123456 dbname=banner sslmode=disable"
+dsn = "host=host.docker.internal user=banner password=123456 dbname=banner sslmode=disable"
 
 [logger]
 level = "info"
 path = "./logs/logfile.log"
 
 [http]
-host="localhost"
+host=""
 port="4500"
